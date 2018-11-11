@@ -1,0 +1,93 @@
+{{#section "head"}}
+<link rel="stylesheet" href="/theme/css/dataTables.min.css">
+<link rel="stylesheet" href="/theme/css/dataTables.bootstrap.css">
+<script src="/theme/js/jquery.dataTables.min.js"></script>
+<script src="/theme/js/dataTables.bootstrap.js"></script>
+<script src="/theme/js/dataTables.buttons.min.js"></script>
+<script src="/theme/js/buttons.flash.min.js"></script>
+<script src="/theme/js/jszip.min.js"></script>
+<script src="/theme/js/pdfmake.min.js"></script>
+<script src="/theme/js/vfs_fonts.js"></script>
+<script src="/theme/js/buttons.html5.min.js"></script>
+<script src="/theme/js/buttons.print.min.js"></script>
+{{/section}}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="body">
+                <a class="btn btn-primary custom1" href="/create">Kitap Ekle</a>
+                <hr>
+                <table id="datatablenet" class="table table-bordered table-striped table-hover dataTable display js-exportable">
+                    <thead>
+                        <tr>
+                            <th>Kitap Adi</th>
+                            <th>Yazar</th>
+                            <th>Yayın Evi</th>
+                            <th>işlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each kitaplistesi as |kitap key|}}
+                        <tr data-id="{{kitap._id}}">
+                            <td class="KitapAdi">{{kitap.KitapAdi}}</td>
+                            <td class="Yazar">{{kitap.Yazar}}</td>
+                            <td class="YayinEvi">{{kitap.YayinEvi}}</td>
+                            <td style="width:128px;">
+                                <a class="btn btn-primary btnCustomSmall" href="/detail/{{kitap._id}}">Detay</a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{{#if Condition}}
+<div class="modal fade" id="addKitapModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Kitap Detayı</h4>
+            </div>
+            <div class="modal-body">
+                <b class="text-info">Kitap Adı : </b>{{kitapDetay.KitapAdi}} <br>
+                <b class="text-info">Yazar : </b>{{kitapDetay.Yazar}} <br>
+                <b class="text-info">Yayın Evi : </b>{{kitapDetay.YayinEvi}} <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+         window.history.pushState("", "", '/');
+        $("#addKitapModal").modal();
+    })
+
+</script>
+{{/if}}
+{{#section "bottom"}}
+
+<script>
+    var oTable = $('.js-exportable').DataTable({
+        dom: 'Bfrtip',
+        responsive: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+    if (window.history && window.history.pushState) {
+
+        $(window).on('popstate', function () {
+            window.location.href = "/";
+        });
+    }
+</script>
+
+{{/section}}

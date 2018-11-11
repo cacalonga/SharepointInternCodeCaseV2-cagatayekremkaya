@@ -1,0 +1,34 @@
+
+.custom1{
+    background: #698196 !important;
+    color: white;
+    margin-top: 10px;
+}
+
+.modal .modal-header {
+
+    background: #698196;
+    color: white;
+}
+
+.btn-custom1 {
+    border: 1px solid #698196;
+    color: #698196;
+}
+
+.btnCustomSmall {
+    padding: 0px 12px;
+}
+
+.card .body {
+    font-size: 14px;
+    color: #555;
+    padding: 6px 10px;
+}
+
+.card {
+    margin-bottom: 15px;
+}
+.dt-buttons{
+    margin-bottom: 10px;
+}
